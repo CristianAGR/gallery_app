@@ -17,16 +17,18 @@ class AlbumScreen extends StatelessWidget {
             const Text("Album Prueba", style: TextStyle(color: Colors.black),)
             ],
         ),
-        backgroundColor: Color.fromARGB(0, 53, 51, 51),
+        backgroundColor: const Color.fromARGB(0, 53, 51, 51),
         shadowColor: Colors.transparent,
       ),
       body: SafeArea(
         child: Center(
            child: GridView.builder(
-                  padding: EdgeInsets.only(left: 0, right: 10),
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
+                  padding: const EdgeInsets.only(left: 0, right: 10),
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 4),
                   itemCount: 40,
-                  itemBuilder: (_, int index) => ImageWidget(image: album))
+                  itemBuilder: (_, int index) => Image(image: NetworkImage(album))
+                  //ImageWidget(image: album)
+                  )
         ),
       ),
     );
