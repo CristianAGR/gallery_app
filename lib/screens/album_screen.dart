@@ -14,11 +14,6 @@ class AlbumScreen extends StatefulWidget {
 class _AlbumScreenState extends State<AlbumScreen> {
 
 /// Customize your own filter options.
-  final FilterOptionGroup _filterOptionGroup = FilterOptionGroup(
-    imageOption: const FilterOption(
-      sizeConstraint: SizeConstraint(ignoreSize: true),
-    ),
-  );
   final int _sizePerPage = 50;
 
   AssetPathEntity? _path;
@@ -26,10 +21,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
   List<AssetEntity>? _entities;
   int _totalEntitiesCount = 0;
 
-  int _page = 0;
   bool _isLoading = false;
-  bool _isLoadingMore = false;
-  bool _hasMoreToLoad = true;
 
     // gets assets
   Future<void> _requestAssets() async {
@@ -38,7 +30,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
     setState(() {
       _isLoading = true;
     });
-    print("Cargando: $_isLoading" );
+    //print("Cargando: $_isLoading" );
     if (!mounted) {
       return;
     }
@@ -47,7 +39,7 @@ class _AlbumScreenState extends State<AlbumScreen> {
       _path = path;
     });
     _totalEntitiesCount = await _path!.assetCountAsync;
-    print("Paths encontrados: $_totalEntitiesCount");
+    //print("Paths encontrados: $_totalEntitiesCount");
     final List<AssetEntity> entities = await _path!.getAssetListPaged(
       page: 0,
       size: _sizePerPage,
@@ -58,7 +50,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
     setState(() {
       _entities = entities;
       _isLoading = false;
-      _hasMoreToLoad = _entities!.length < _totalEntitiesCount;
     });
   }
 
@@ -93,7 +84,6 @@ class _AlbumScreenState extends State<AlbumScreen> {
 
 @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     
   }
@@ -101,23 +91,18 @@ class _AlbumScreenState extends State<AlbumScreen> {
   @override
 void didChangeDependencies() {
   super.didChangeDependencies();
-  // recibes the path from the arguments
+  // recibes the path from the arguments and requests all the assets from the path
   _requestAssets();
 }
   @override
   Widget build(BuildContext context) {
-            
-   // receives the path from the arguments
-    //_requestAssets(path);
-    
-    //final String album = ModalRoute.of(context)!.settings.arguments as String;
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: Row(
           children: [
             IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black,)),
-            Text("${_path!.name}", style: TextStyle(color: Colors.black),)
+            Text(_path!.name, style: const TextStyle(color: Colors.black),)
             ],
         ),
         backgroundColor: const Color.fromARGB(0, 53, 51, 51),
