@@ -129,6 +129,7 @@ class _PhotosScreenState extends State<PhotosScreen> {
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 3, childAspectRatio: 0.85),
                 itemCount: _totalEntitiesCount,
                 itemBuilder: (_, int index) => ImageWidget(
+                  path: _path!,
                   entity: _entities![index],
                   option: const ThumbnailOption(size: ThumbnailSize.square(200)),
                   //image: "https://cdn.pixabay.com/photo/2012/08/27/14/19/mountains-55067__340.png",
