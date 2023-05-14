@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:photo_manager/photo_manager.dart';
 import 'package:provider/provider.dart';
 
@@ -53,12 +54,23 @@ AssetPathProvider readPathProvider(BuildContext c) =>
     }
   }
 
-   addFavorite(IconData favIcon) {
-      print("New favorite");
-      favIcon = Icons.favorite;
-    return favIcon;
-    }
-  
+/// blocks rotation; sets orientation to: portrait
+void portraitModeOnly() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
+}
+
+void enableRotation() {
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+    DeviceOrientation.landscapeLeft,
+    DeviceOrientation.landscapeRight,
+  ]);
+}
+
 }
 
 
