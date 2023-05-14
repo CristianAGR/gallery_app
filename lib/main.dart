@@ -17,6 +17,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var services = ImagesServices();
+    services.portraitModeOnly();
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Gallery',
