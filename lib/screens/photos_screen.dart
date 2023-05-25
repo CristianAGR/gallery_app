@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gallery_app/providers/images_services.dart';
 import 'package:gallery_app/widgets/image_widget.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:photo_manager/photo_manager.dart';
 
 class PhotosScreen extends StatefulWidget {
@@ -159,7 +160,7 @@ class _PhotosScreenState extends State<PhotosScreen> {
             Expanded(
               child: _buildBody(context)
             ),
-            FloatingActionButton(onPressed: addPhoto, child: const Icon(Icons.camera_alt),)
+            FloatingActionButton(onPressed: () => services.takePhoto(context), child: const Icon(Icons.camera_alt),)
           ],
         ),
       )
@@ -167,9 +168,6 @@ class _PhotosScreenState extends State<PhotosScreen> {
   }
 
   void options() {
-  }
-
-  void addPhoto() {
   }
   
 }
